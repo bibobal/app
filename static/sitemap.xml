@@ -2,42 +2,42 @@
 		<!--	created with www.mysitemapgenerator.com	-->
 		<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-	<loc>http://stylestorage.pythonanywhere.com/</loc>
+	<loc>http://coffeandbooks.pythonanywhere.com/</loc>
 	<lastmod>2025-05-26T11:09:42+01:00</lastmod>
 	<priority>1.0</priority>
 </url>
 <url>
-	<loc>http://stylestorage.pythonanywhere.com/catalog/</loc>
+	<loc>http://coffeandbooks.pythonanywhere.com/catalog/</loc>
 	<lastmod>2025-05-26T11:09:42+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
 <url>
-	<loc>http://stylestorage.pythonanywhere.com/about/</loc>
+	<loc>http://coffeandbooks.pythonanywhere.com/about/</loc>
 	<lastmod>2025-05-26T11:09:42+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
 <url>
-	<loc>http://stylestorage.pythonanywhere.com/contacts/</loc>
+	<loc>http://coffeandbooks.pythonanywhere.com/contacts/</loc>
 	<lastmod>2025-05-26T11:09:42+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
 <url>
-	<loc>http://stylestorage.pythonanywhere.com/register/</loc>
+	<loc>http://coffeandbooks.pythonanywhere.com/register/</loc>
 	<lastmod>2025-05-26T11:09:42+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
 <url>
-	<loc>http://stylestorage.pythonanywhere.com/login/</loc>
+	<loc>http://coffeandbooks.pythonanywhere.com/login/</loc>
 	<lastmod>2025-05-26T11:09:42+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
 <url>
-	<loc>http://stylestorage.pythonanywhere.com/login/?next=/</loc>
+	<loc>http://coffeandbooks.pythonanywhere.com/login/?next=/</loc>
 	<lastmod>2025-05-26T11:09:42+01:00</lastmod>
 	<priority>0.5</priority>
 </url>
 <url>
-	<loc>http://stylestorage.pythonanywhere.com/reviews/</loc>
+	<loc>http://coffeandbooks.pythonanywhere.com/reviews/</loc>
 	<lastmod>2025-05-26T11:09:42+01:00</lastmod>
 	<priority>0.8</priority>
 </url>
