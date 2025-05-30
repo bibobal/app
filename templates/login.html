@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'styles/reg.css' %}">
+
+<div class="form-container">
+    <h2>Вход</h2>
+    {% if error %}
+    <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+    <form method="post" class="form-reg">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Email:</label>
+            <input type="text" name="username" required class="form-control" id="login-input">
+        </div>
+        <div class="form-group">
+            <label>Пароль:</label>
+            <input type="password" name="password" required class="form-control">
+        </div>
+        <button type="submit" class="btn-login">Войти</button>
+        <p class="auth-link">Нет аккаунта? <a href="{% url 'register' %}">Регистрация</a></p>
+    </form>
+</div>
+<script src="{% static 'scripts/reg.js' %}"></script>
+{% endblock %}

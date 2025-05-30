@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}О компании - CoffeeAndBooks{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'styles/about.css' %}">
+
+<main>
+    <!-- Секция "О компании" -->
+    <section class="about-hero">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h1 class="hero-title">15 лет создаём уникальные продукты</h1>
+                    <p class="hero-text">С 2010 года мы варим отличное кофе и не только!</p>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">648 146 человек+</div>
+                            <div class="stat-label">Любят и рекомендуют нашу продукцию</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">рекомендаций</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-image">
+                    <img src="https://ecocups.ru/wp-content/uploads/2023/02/2-1536x1151.jpg" 
+                         alt="Наше производство"
+                         loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- История компании -->
+    <section class="history-section">
+        <div class="container">
+            <h2 class="section-title">Наша история</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">2010</div>
+                    <div class="timeline-content">
+                        <h3>Основание компании</h3>
+                        <p>Первая(и лучшая)кофейня в Ижевске</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">2014</div>
+                    <div class="timeline-content">
+                        <h3>Собственное производство</h3>
+                        <p>Мы сами обжариваем кофейныые зерна для лучшего вкуса</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">2025</div>
+                    <div class="timeline-content">
+                        <h3>Лидер рынка</h3>
+                        <p>Вошли в ТОП-5 ресторанов России и получили звезду Мишлена!"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Команда -->
+    <section class="team-section">
+        <div class="container">
+            <h2 class="section-title">Наша команда</h2>
+            
+            <div class="team-grid">
+                <div class="team-card">
+                    <img src="https://randomuser.me/api/portraits/men/75.jpg" 
+                         alt="Алексей Петров" 
+                         class="member-photo"
+                         loading="lazy">
+                    <h3>Алексей Петров</h3>
+                    <p class="position">Главный дизайнер</p>
+                    <p class="experience">12 лет опыта</p>
+                </div>
+                
+                <div class="team-card">
+                    <img src="https://randomuser.me/api/portraits/women/92.jpg" 
+                         alt="Мария Иванова" 
+                         class="member-photo"
+                         loading="lazy">
+                    <h3>Мария Иванова</h3>
+                    <p class="position">Технический директор</p>
+                    <p class="experience">Основатель компании</p>
+                </div>
+                
+                <div class="team-card">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" 
+                         alt="Иван Сидоров" 
+                         class="member-photo"
+                         loading="lazy">
+                    <h3>Иван Сидоров</h3>
+                    <p class="position">Менеджер проектов</p>
+                    <p class="experience">7 лет с нами</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

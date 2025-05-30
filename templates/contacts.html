@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Контакты - CoffeeAndBooks{% endblock %}
+
+{% block content %}
+
+<div class="contact__wrapper">
+    <div class="content">
+        <div class="contact_block">
+            <h2>Наши контакты</h2>
+            <nav>
+                <ul>
+                    {%for i in adress%}
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <p>{{i.address}}</p>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <p>stariybox10@gmail.com</p>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <p>{{i.phone}}</p>
+                        </li>
+                    {%endfor%}
+                </ul>
+            </nav>
+        </div>
+
+        <div class="send-message_block">
+            <h2>Связаться с нами</h2>
+            <form action="" class="send_message_form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" name="name" class="form-control" placeholder="Ваше имя" required >
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" required placeholder="Электронная почта" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="tel" name="phone" class="form-control phone-input" placeholder="+7 (___) ___-__-__">
+                </div>
+                <div class="form-group">
+                    <textarea name="" placeholder="Укажите ваше сообщение" id=""></textarea>
+                </div>
+                <button type="submit">Отправить</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

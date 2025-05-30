@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}CoffeeAndBooks{% endblock %}
+
+{% block content %}
+<main>
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title hero-title-custom">Кофейня  Ижевска с вкуснейшими кофе и завтраками</h1>
+            <p class="hero-text hero-text-custom">Создаем Ваше настроение с самого утра</p>
+            <div class="cta-buttons cta-buttons-custom">
+                <a href="#latest-products" class="cta-btn primary-cta btn-custom">Открыть меню</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="features features-custom">
+        <div class="features-grid">
+            <div class="feature-card feature-card-custom feature-card-improved">
+                <i class="fas fa-award feature-icon"></i>
+                <h3 class="feature-title">Гарантия вкуса</h3>
+                <p>Нам доверяют тысячи клиентов на протяжении 15 лет!</p>
+            </div>
+            <div class="feature-card feature-card-custom feature-card-improved">
+                <i class="fas fa-warehouse feature-icon"></i>
+                <h3 class="feature-title">Широкий ассортимент</h3>
+                <p>Большой выбор напитков и не только!</p>
+            </div>
+            <div class="feature-card feature-card-custom feature-card-improved">
+                <i class="fas fa-truck feature-icon"></i>
+                <h3 class="feature-title">Быстрая доставка</h3>
+                <p>Доставляем по всему г.Ижевску в кратчайшие сроки</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="latest-products" class="latest-products-section">
+        <h2 class="section-title latest-products-title">Выбор посетителей</h2>
+        <div class="products-grid">
+            {% for product in latest_products %}
+            <article class="product-card" itemscope itemtype="http://schema.org/Product">
+                <div class="product-image"><img src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title" itemprop="name">{{ product.name }}</h3>
+                    <p class="product-description" itemprop="description">{{ product.description|truncatewords:15 }}</p>
+                    <p class="product-price">{{ product.price }} ₽</p>
+                </div>
+            </article>
+            {% endfor %}
+            
+        </div>
+        <div class="catalog-button-container">
+            <a href="{% url 'catalog' %}" class="cta-btn">Перейти в меню</a>
+        </div>
+    </section>
+
+    <section id="latest-articles" class="latest-articles-section">
+        <div class="container">
+            <h2 class="section-title">Ближайшие мероприятия</h2>
+
+            <div class="articles-grid">
+                {% for article in latest_articles %}
+                <article class="article-card">
+                    <div class="article-image">
+                        <img src="{{ article.image.url }}" alt="{{ article.title }}" loading="lazy">
+                    </div>
+                    <div class="article-content">
+                        <h3 class="article-title">{{ article.title }}</h3>
+                        <div class="article-meta">
+                            <span class="article-date">{{ article.created_at|date:"d.m.Y" }}</span>
+                            <span class="article-author">Автор: {{ article.author.get_full_name }}</span>
+                        </div>
+                        <p class="article-excerpt">{{ article.short_description }}</p>
+                        <a href="{% url 'article_detail' article.slug %}" class="read-more">Читать далее →</a>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Существующая секция отзывов -->
+    <section id="reviews" class="reviews-section">
+        <h2 class="section-title" style="text-align: center; padding: 0 0 20px 0;">Отзывы</h2>
+
+        <!-- Форма для неавторизованных пользователей -->
+
+        <div class="add-review">
+            <h3>Оставить отзыв</h3>
+            <form class="review-form" style="padding-top: 20px;">
+                <div class="form-group">
+                    <label for="review-name">Ваше имя</label>
+                    <input type="text" id="review-name" class="form-control" placeholder="Введите ваше имя">
+                </div>
+                <div class="form-group">
+                    <label for="review-text">Отзыв</label>
+                    <textarea id="review-text" class="form-control" rows="4"
+                        placeholder="Напишите ваш отзыв"></textarea>
+                </div>
+                {% if user.is_authenticated %}
+                <button type="submit">Отправить</button>
+                {% else %}
+                <p class="disabled_form">
+                    Для добавления отзыва <a href="{% url 'login' %}?next={{ request.path }}">войдите</a>
+                    {% if 'register' in view.urlpatterns %}
+                        или <a href="{% url 'register' %}">зарегистрируйтесь</a>
+                    {% endif %}
+                </p>
+                {% endif %}
+            </form>
+        </div>
+
+    </section>
+
+
+    <section class="reviews_block">
+        <h2>Последние отзывы</h2>
+        <div class="latest-reviews">
+            {% if latest_reviews %}
+            <div class="reviews-grid">
+                {% for review in latest_reviews %}
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="review-author">Пользователь {{ review.user.username }}</span>
+                        <span class="review-date">{{ review.created_at|date:"d.m.Y" }}</span>
+                    </div>
+                    <div class="review-text" style="padding-top: 20px;">
+                        {{ review.text|truncatechars:150 }}
+                        {% if review.text|length > 150 %}...{% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="rev-btn">
+                <a href="{% url 'all_reviews' %}" class="btn btn-outline-primary">
+                    Все отзывы
+                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                </a>
+                {% if user.is_authenticated %}
+                <a href="{% url 'manage_review' %}" class="btn btn-outline-secondary">
+                    {% if user.reviews.exists %}Редактировать отзыв{% else %}Оставить отзыв{% endif %}
+                </a>
+                {% endif %}
+            </div>
+            {% else %}
+            <p class="no-reviews">Пока нет отзывов. Будьте первым!</p>
+            {% if user.is_authenticated %}
+            <div class="text-center mt-3">
+                <a href="{% url 'manage_review' %}" class="btn btn-primary">Оставить отзыв</a>
+            </div>
+            {% endif %}
+            {% endif %}
+        </div>
+    </section>
+</main>
+{% endblock %}
