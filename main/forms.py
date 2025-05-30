@@ -28,7 +28,7 @@ class ProductForm(forms.ModelForm):
             'description': forms.Textarea(attrs={
                 'rows': 4,
                 'class': 'form-control',
-                'placeholder': 'Описание изделия...'
+                'placeholder': 'Описание...'
             }),
             'category': forms.Select(attrs={
                 'class': 'form-control',
