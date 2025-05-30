@@ -119,7 +119,7 @@ class OrderDetailView(LoginRequiredMixin, View):
     def get(self, request):
         order_id = request.GET.get('order_id')
         if not order_id:
-            return JsonResponse({'error': 'Order ID required'}, status=400)
+            return redirect("home")
 
         try:
             order = Order.objects.get(id=order_id, user=request.user)
@@ -137,9 +137,9 @@ class OrderDetailView(LoginRequiredMixin, View):
             })
             
         except Order.DoesNotExist:
-            return JsonResponse({'error': 'Order not found'}, status=404)
+            return redirect("home")
         except Exception as e:
-            return JsonResponse({'error': 'Server error'}, status=500)
+            return redirect("home")
         
     
 def logout_view(request):
@@ -222,7 +222,7 @@ class CartContext:
 def add_to_cart(request, product_id):
     user = request.user
     if not user.is_authenticated:
-        return JsonResponse({'success': False, 'error': 'User not authenticated'}, status=401)
+        return redirect("home")
     product = get_object_or_404(Product, id=product_id)
     cart, created = Cart.objects.get_or_create(user=user)
     cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
@@ -232,7 +232,7 @@ def add_to_cart(request, product_id):
     else:
         cart_item.quantity = 1
         cart_item.save()
-    return JsonResponse({'success': True, 'cart_count': sum(item.quantity for item in cart.items.all())})
+    redirect("home")
 
 @login_required
 def order(request):
@@ -303,7 +303,7 @@ def remove_from_cart(request, product_id):
     user = request.user
     cart = Cart.objects.filter(user=user).first()
     if not cart:
-        return JsonResponse({'success': False, 'error': 'Корзина не найдена'})
+        return redirect("home")
 
     try:
         cart_item = CartItem.objects.get(cart=cart, product_id=product_id)
